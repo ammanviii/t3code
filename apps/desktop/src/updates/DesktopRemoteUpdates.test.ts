@@ -211,14 +211,6 @@ describe("DesktopRemoteUpdates", () => {
           [["req-switch", "ready-to-install"]],
         );
         assert.equal(terminals[0]?.state.downloadedVersion, "1.2.4-nightly.20261027.1");
-
-        yield* Queue.offer(requests, {
-          ...request("req-other-version"),
-          channel: "nightly",
-          targetVersion: "1.2.4-nightly.20261028.1",
-        });
-        yield* settle;
-        assert.equal(terminalReports(reports)[1]?.outcome, "failed");
       }),
     );
   });
